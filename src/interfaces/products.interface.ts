@@ -1,8 +1,8 @@
-interface Products {
-  id: number,
+export interface Products {
+  id?: number,
   name: string,
   amount: string,
   orderId: number;
 }
 
-export default Products;
+export type CreateProduct = Omit<Products, 'orderId'>;
