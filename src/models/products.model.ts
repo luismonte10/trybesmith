@@ -22,7 +22,16 @@ const create = async (newProduct: CreateProduct): Promise<CreateProduct> => {
   return { id: insertId, ...newProduct };
 };
 
+const getByOrderId = async (orderId: number): Promise<Products[]> => {
+  const query = 'SELECT * FROM Trybesmith.Products WHERE Products.orderId = ?';
+
+  const [product] = await connection.execute(query, [orderId]);
+
+  return product as Products[];
+};
+
 export = {
   getAll,
   create,
+  getByOrderId,
 };
